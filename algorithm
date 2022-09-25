@@ -1,0 +1,7 @@
+- generate lines
+- store lines' pixels position -> stored in shape_pixels
+- load image pixels
+- draw background
+- get image pixel indexes corresponding to lines' -> stored in back_img_pixels_idxs
+- get color of such pixels -> stored in back_img_pixels
+- set image pixels on same coordinates
