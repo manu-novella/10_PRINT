@@ -1,18 +1,16 @@
 function generate_shapes() {
     /*
-        Generates the shapes in white on a black background
+        Generates the shapes in white on a black background.
      */
 
     let cell_width = width / 50 //this should be a param
     let cell_height = height / 50 //this should be a param
 
-    background(0, 0, 0)
+    background(0)
+    stroke(255)
 
     for(x = 0; x <= width; x += cell_width) {
-        for(y = 0; y <= height; y += cell_height) {
-          //stroke(0, 0, 139);
-          stroke(255, 255, 255)
-    
+        for(y = 0; y <= height; y += cell_height) {   
           if (random() > 0.5) {
             line(x, y, x + cell_width, y + cell_height)
           } else {
@@ -30,21 +28,44 @@ function get_shape_pixels() {
         belongs to a shape.
     */
     
-    //generate pixel array
     loadPixels()
+
+    //generate pixel array
     let shape_pixels = new Array(pixels.length / 4)
 
     for(let idx = 0; idx < pixels.length; idx += 4) {
-        if(pixels[idx] > 0
-            && pixels[idx + 1] > 0
-            && pixels[idx + 2] > 0) {
-                shape_pixels[idx / 4] = true
+        if(pixels[idx] == 255 && pixels[idx + 1] == 255 && pixels[idx + 2] == 255) { //red, green, blue
+            shape_pixels[idx / 4] = true    //pixel belongs in shape
         } else {
-            shape_pixels[idx / 4] = false
+            shape_pixels[idx / 4] = false   //pixel doesn't belong in shape
         }    
     }
 
     return shape_pixels
+}
+
+
+function generate_not_shapes(shape_pixels) {
+    /*
+        Draws the pixels that don't belong to the shapes, potentially after setting a specific background.
+        
+        CAUTION: apparently, if something is drawn (a shape, the background...) between a call to loadPixels
+        and updatePixels, it won't be drawn, even if the pixels in the pixel array are not manipulated. So
+        draw either before or after, but not in between.
+    */
+
+    loadPixels()
+    
+    for(idx = 0; idx < shape_pixels.length; idx++) {
+        if (!shape_pixels[idx]) {   //toggle "!" in "!shape_pixels[idx]" for opposite results
+            pixels[idx * 4] = 0
+            pixels[idx * 4 + 1] = 0
+            pixels[idx * 4 + 2] = 0
+            pixels[idx * 4 + 3] = 255
+        }
+    }
+
+    updatePixels()
 }
 
 
