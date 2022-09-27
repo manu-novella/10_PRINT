@@ -1,10 +1,7 @@
-function generate_gridlike_pattern() {
+function generate_gridlike_pattern(cell_width, cell_height) {
     /*
         Generates the shapes in white on a black background.
     */
-
-    let cell_width = width / 50 //this should be a param
-    let cell_height = height / 50 //this should be a param
 
     background(0)
     stroke(255)
@@ -21,7 +18,7 @@ function generate_gridlike_pattern() {
 }
 
 
-function generate_central_circle() {
+function generate_central_circle(circle_width, circle_height, circle_diameter) {
     /*
         Generates a circle in white on a black background
     */
@@ -29,7 +26,7 @@ function generate_central_circle() {
     background(0)
     stroke(255)
 
-    circle(width / 2, height / 2, width / 1.1)
+    circle(circle_width, circle_height, circle_diameter)
 }
 
 
@@ -57,7 +54,7 @@ function get_shape_pixels() {
 }
 
 
-function generate_not_shapes(shape_pixels) {
+function generate_not_shapes(shape_pixels, color_) {
     /*
         Draws the pixels, in black, that don't belong to the shapes or patterns, potentially after setting a specific background.
         
@@ -70,15 +67,20 @@ function generate_not_shapes(shape_pixels) {
     
     for(idx = 0; idx < shape_pixels.length; idx++) {
         if (!shape_pixels[idx]) {   //toggle "!" in "!shape_pixels[idx]" for opposite results
-            pixels[idx * 4] = 0
-            pixels[idx * 4 + 1] = 0
-            pixels[idx * 4 + 2] = 0
-            pixels[idx * 4 + 3] = 255
+            pixels[idx * 4] = red(color_)
+            pixels[idx * 4 + 1] = green(color_)
+            pixels[idx * 4 + 2] = blue(color_)
+            pixels[idx * 4 + 3] = alpha(color_)
         }
     }
 
     updatePixels()
 }
+
+
+
+
+
 
 
 function get_back_img_pixels(shape_pixels, image) {
