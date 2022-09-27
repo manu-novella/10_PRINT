@@ -1,7 +1,7 @@
-function generate_shapes() {
+function generate_gridlike_pattern() {
     /*
         Generates the shapes in white on a black background.
-     */
+    */
 
     let cell_width = width / 50 //this should be a param
     let cell_height = height / 50 //this should be a param
@@ -18,6 +18,18 @@ function generate_shapes() {
           }
         }
     }
+}
+
+
+function generate_central_circle() {
+    /*
+        Generates a circle in white on a black background
+    */
+
+    background(0)
+    stroke(255)
+
+    circle(width / 2, height / 2, width / 1.1)
 }
 
 
@@ -47,7 +59,7 @@ function get_shape_pixels() {
 
 function generate_not_shapes(shape_pixels) {
     /*
-        Draws the pixels that don't belong to the shapes, potentially after setting a specific background.
+        Draws the pixels, in black, that don't belong to the shapes or patterns, potentially after setting a specific background.
         
         CAUTION: apparently, if something is drawn (a shape, the background...) between a call to loadPixels
         and updatePixels, it won't be drawn, even if the pixels in the pixel array are not manipulated. So
