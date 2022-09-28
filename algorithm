@@ -1,7 +1,8 @@
 - generate lines
-- store lines' pixels position -> stored in shape_pixels
-- load image pixels
+- store lines' pixels position -> stored in gridlike_pattern_pixels
+- erase lines
+- generate circle
+- store circle's pixels position -> stored in circle_pixels
 - draw background
-- get image pixel indexes corresponding to lines' -> stored in back_img_pixels_idxs
-- get color of such pixels -> stored in back_img_pixels
-- set image pixels on same coordinates
+- draw the pixels not belonging in the lines
+- draw the pixels not belonging in the circle

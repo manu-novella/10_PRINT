@@ -20,11 +20,6 @@ function setup() {
   generate_not_shapes(gridlike_pattern_pixels, color(0, 0, 0, 255))
   generate_not_shapes(circle_pixels, color(0, 0, 0, 255))
 
-  /*
-  let back_img_pixels = get_back_img_pixels(shape_pixels, img)
-  set_back_img_pixels(shape_pixels, back_img_pixels)
-  */
-
   //timestamp = Date.now().toString()
   //saveCanvas(canvas, "outputs/" + timestamp, "png")
 
